@@ -1,22 +1,22 @@
-'use client'; // Add this directive to mark the component as a client component
+"use client"; // Mark the component as a client component
 
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Header() {
   const [menuActive, setMenuActive] = useState(false);
 
   // Function to toggle the menu
   const toggleMenu = () => {
-    setMenuActive(!menuActive);
+    setMenuActive((prev) => !prev);
   };
 
   // Close menu when clicking outside of it
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const menuIcon = document.querySelector('#menu-icon');
-      const navbar = document.querySelector('.navbar');
-      
+      const menuIcon = document.querySelector("#menu-icon");
+      const navbar = document.querySelector(".navbar");
+
       if (menuIcon && navbar) {
         if (!menuIcon.contains(event.target as Node) && !navbar.contains(event.target as Node)) {
           setMenuActive(false); // Close the menu if clicked outside
@@ -24,12 +24,10 @@ export default function Header() {
       }
     };
 
-    // Adding event listener to document to detect clicks outside
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
 
-    // Cleanup event listener on component unmount
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
   }, []);
 
@@ -43,16 +41,17 @@ export default function Header() {
         src="/images/9.png"
         id="menu-icon"
         onClick={toggleMenu}
-        className={menuActive ? 'bx-x' : ''}
+        className={menuActive ? "bx bx-x" : "bx bx-menu"}
         alt="Menu Icon"
+        aria-expanded={menuActive}
       />
 
-      <nav className={`navbar ${menuActive ? 'active' : ''}`}>
-        <Link href="#home" className="active">Home</Link>
-        <Link href="#education">Education</Link>
-        <Link href="#skills">Skills</Link>
-        <Link href="#projects">Projects</Link>
-        <Link href="#contact">Contact</Link>
+      <nav className={`navbar ${menuActive ? "active" : ""}`}>
+        {["Home", "Education", "Skills", "Projects", "Contact"].map((item) => (
+          <Link key={item} href={`#${item.toLowerCase()}`} className={menuActive ? "active" : ""}>
+            {item}
+          </Link>
+        ))}
       </nav>
     </header>
   );
