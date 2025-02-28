@@ -452,16 +452,16 @@ span {
 }
 
 .skills-info h4 {
-  font-size: 3.2rem;
+  font-size: 3rem;
   font-weight: 800;
-  line-height: 1.7;
+  line-height: 1.5;
 }
 
 .skills-info p {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   font-weight: 600;
   max-height: 100px;
-  line-height: 2;
+  line-height: 1.7;
   margin: auto;
 }
 
@@ -799,13 +799,15 @@ span {
   .skills-box .skills-info {
     padding: 1.5rem 1.5rem;
   }
-  .skills-info h4{
+  .skills-info h4 {
     font-size: 2.9rem;
     line-height: 1.4;
     margin-bottom: 1.3rem;
   }
+  
   .skills-info p {
-    font-size: 1.4rem;  
+    font-size: 1.4rem;
     line-height: 1.8;
   }
+
 }
